@@ -27,6 +27,9 @@ export default new Vuex.Store({
     updateDeletedItems: (state, payload) => { state.deletedItems.push(payload)},
     removeItem: (state, payload) => {
       state.todoItems = state.todoItems.filter(item => item.id !== payload)
+    },
+    removeDeletedItem: (state, payload) => {
+      state.deletedItems = state.deletedItems.filter(item => item.id !== payload)
     }
   },
   actions: {
@@ -45,6 +48,11 @@ export default new Vuex.Store({
       const currentTodo = context.getters.getTodoById(payload)
       context.commit('updateDeletedItems', currentTodo)
       context.commit('removeItem', payload)
+    },
+    restoreTodoItem(context, payload) {
+      const currentTodo = context.state.deletedItems.find(item => item.id === payload)
+      context.commit('updateTodoItems', currentTodo)
+      context.commit('removeDeletedItem', payload)
     }
   },
   modules: {

@@ -8,7 +8,7 @@
           <h5 class="card-title">{{ todo.title }}</h5>
           <p class="card-text">{{ todo.description }}</p>
           <router-link :to="{ name: 'SingleTodo', params: { id: `${ todo.id }` }}" class="btn btn-primary">View</router-link>
-          <a href="#" class="btn btn-danger" @click="deleteTodoItem(todo.id)">Delete</a>
+          <a href="#" class="btn btn-danger ml-2" @click="deleteTodoItem(todo.id)">Delete</a>
         </div>
       </div>
     </div>
